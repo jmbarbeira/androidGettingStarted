@@ -64,8 +64,8 @@ public class MyClass implements Events.Required {
         this.api.useDevice(device);
     }
 
-    public boolean pay() {
-        return this.api.sale(new BigInteger("1000"), Currency.GBP);
+    public boolean pay(BigInteger a) {
+        return this.api.sale(a, Currency.GBP);
 
         // Let´s start our first payment of 10 pounds
     }

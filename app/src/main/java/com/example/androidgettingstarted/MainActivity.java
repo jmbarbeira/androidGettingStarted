@@ -1,23 +1,38 @@
 package com.example.androidgettingstarted;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 import android.webkit.WebView;
-import android.widget.Button;
+import androidx.appcompat.app.AppCompatActivity;
 
-import androidx.fragment.app.FragmentActivity;
-import com.handpoint.api.TransactionResult;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+import androidx.navigation.ui.AppBarConfiguration;
+import androidx.navigation.ui.NavigationUI;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import androidx.appcompat.app.AppCompatActivity;
+
+import androidx.navigation.ui.AppBarConfiguration;
+import android.os.Bundle;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import androidx.appcompat.app.AppCompatActivity;
+
+import androidx.navigation.ui.AppBarConfiguration;
 
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class MainActivity extends FragmentActivity {
-        private Button payNowButton;
-        private Button connectButton;
-        private Button disconnectButton;
-        MyClass myClass;
+import static androidx.navigation.ui.NavigationUI.setupActionBarWithNavController;
+
+
+public class MainActivity extends AppCompatActivity {
+
+
+        View navView;
+        NavController navController;
+        AppBarConfiguration appBarConfiguration;
 
         /**
          * Called when the activity is first created.
@@ -26,31 +41,21 @@ public class MainActivity extends FragmentActivity {
         public void onCreate(Bundle savedInstanceState) {
                 super.onCreate(savedInstanceState);
                 setContentView(R.layout.activity_main);
-                myClass = new MyClass(this);
-                initializeButtons();
-        }
-        public void initializeButtons() {
-                payNowButton = (Button) findViewById(R.id.payNowBtn);
-                /*payNowButton.setOnClickListener(new View.OnClickListener() {
-                        public void onClick(View view) {
-                                myClass.pay();
-                        }
-                });*/
-                connectButton = (Button) findViewById(R.id.connectCardReader);
-                connectButton.setOnClickListener(new View.OnClickListener() {
-                        public void onClick(View view) {
-                               // myClass.discoverDevices();
 
-                                 myClass.connect(); // For a direct connection to the card reader
-                        }
-                });
-                disconnectButton = (Button) findViewById(R.id.disconnectCardReader);
-                disconnectButton.setOnClickListener(new View.OnClickListener() {
-                        public void onClick(View view) {
-                                myClass.disconnect();
-                        }
-                });
+
+                NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+                AppBarConfiguration appBarConfiguration =
+                        new AppBarConfiguration.Builder(navController.getGraph()).build();
+                BottomNavigationView BottomNavigationView = findViewById(R.id.nav_view);
+
+
+                NavigationUI.setupActionBarWithNavController(this, navController);
+                NavigationUI.setupWithNavController(BottomNavigationView,navController);
+
+
         }
+
+
         public void callReceiptDialog(final String customerReceipt) {
                 this.runOnUiThread(new Runnable() {
                         @Override
@@ -74,11 +79,7 @@ public class MainActivity extends FragmentActivity {
                 });
         }
 
-        @Override
-        public void onPause() {
-                super.onPause();  // Always call the superclass method first
-                myClass.disconnect(); // disconnects from the card reader if the application is paused
-        }
+
 
         @Override
         public void onResume() {
@@ -95,11 +96,7 @@ public class MainActivity extends FragmentActivity {
                 super.onStop();  // Always call the superclass method first
         }
 
-        @Override
-        public void onRestart() {
-                super.onRestart();  // Always call the superclass method first
-                initializeButtons(); // initialize the buttons again after restarting the app
-        }
+
 
         @Override
         public void onDestroy() {

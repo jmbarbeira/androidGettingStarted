@@ -27,5 +27,40 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toBottomOf="parent" android:layout_marginBottom="648dp"
-            android:layout_width="0dp"/>
+            android:layout_width="0dp" app:layout_constraintHorizontal_bias="0.0"/>
+    <Button
+            android:text="@string/btnConnect"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/connectCardReader"
+            app:layout_constraintTop_toBottomOf="@+id/payNowBtn" app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintHorizontal_bias="0.0" android:layout_marginTop="344dp"/>
+    <Button
+            android:text="@string/btnDisconnect"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/disconnectCardReader" android:layout_marginTop="72dp"
+            app:layout_constraintTop_toBottomOf="@+id/connectCardReader" app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="0.0" app:layout_constraintVertical_bias="0.0"/>
+    <Button
+            android:text="@string/btn1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:layout_editor_absoluteX="116dp" android:id="@+id/btnN1"
+            app:layout_constraintTop_toTopOf="@+id/payNowBtn" android:layout_marginTop="124dp"/>
+    <Button
+            android:text="@string/btn2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnN2" android:layout_marginTop="124dp"
+            app:layout_constraintTop_toTopOf="@+id/payNowBtn" app:layout_constraintStart_toEndOf="@+id/btnN1"/>
+    <Button
+            android:text="@string/btn3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/button" app:layout_constraintStart_toEndOf="@+id/btnN2"
+            android:layout_marginTop="124dp" app:layout_constraintTop_toTopOf="@+id/payNowBtn"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
